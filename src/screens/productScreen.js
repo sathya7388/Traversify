@@ -25,7 +25,7 @@ const ProductScreen = props => {
       });
   }, []);
 
-  _saveData = async saveObj => {
+  const saveData = async saveObj => {
     try {
       await AsyncStorage.setItem (saveObj.nodeFour, JSON.stringify (saveObj));
       let keyArray = Array.from (keys);
@@ -37,7 +37,7 @@ const ProductScreen = props => {
       console.log (error);
     }
   };
-  _deleteData = async data => {
+  const deleteData = async data => {
     try {
       await AsyncStorage.removeItem (data.name);
       let keyArray = Array.from (keys);
@@ -54,15 +54,20 @@ const ProductScreen = props => {
   };
   const selectData = (data, result) => {
     if (result) {
-      _deleteData (data);
+      deleteData (data);
     } else {
       var saveObj = props.route.params.saveData;
       saveObj.nodeFour = data.name;
-      _saveData (saveObj);
+      saveData (saveObj);
     }
   };
   const renderItem = ({item}) => (
-    <Card data={item} saveData={props.route.params.saveData} onSelectData={selectData} selectedKeys={keys} />
+    <Card
+      data={item}
+      saveData={props.route.params.saveData}
+      onSelectData={selectData}
+      selectedKeys={keys}
+    />
   );
   return (
     <View style={styles.container}>
@@ -83,7 +88,9 @@ const ProductScreen = props => {
         </View>
       </View>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>{props.route.params.saveData.nodeThree}</Text>
+        <Text style={styles.titleText}>
+          {props.route.params.saveData.nodeThree}
+        </Text>
       </View>
       <FlatList
         data={props.route.params.screenData.items}
@@ -135,14 +142,14 @@ const styles = StyleSheet.create ({
     marginVertical: 15,
     paddingBottom: 25,
   },
-  titleContainer:{
-    paddingHorizontal:20,
-    paddingTop:15,
+  titleContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 15,
   },
-  titleText:{
-    fontWeight:'bold',
-    fontFamily:'',
-    fontSize: hp(3),
-    color:COLORS.indigo,
+  titleText: {
+    fontWeight: 'bold',
+    fontFamily: '',
+    fontSize: hp (3),
+    color: COLORS.indigo,
   },
 });

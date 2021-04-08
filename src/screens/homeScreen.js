@@ -64,6 +64,8 @@ const styles = StyleSheet.create ({
   flatlistContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop:10,
+    paddingBottom:70,
   },
 });
 export default HomeScreen;

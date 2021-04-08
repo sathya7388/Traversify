@@ -72,7 +72,6 @@ const cardStyle = StyleSheet.create ({
     marginVertical: 10,
     paddingHorizontal: 20,
     paddingLeft: 30,
-    // paddingVertical:10,
     backgroundColor: COLORS.white,
     width: wp (90),
     height: hp (13),

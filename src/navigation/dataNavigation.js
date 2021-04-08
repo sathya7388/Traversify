@@ -12,17 +12,17 @@ const DataTopTab = () => {
   return (
     <TopTab.Navigator>
       <TopTab.Screen
-        name="SavedDataScreen"
-        component={SavedDataScreen}
-        options={{
-          tabBarLabel: 'Saved Data',
-        }}
-      />
-      <TopTab.Screen
         name="ApiScreen"
         component={ApiScreen}
         options={{
           tabBarLabel: 'API Response',
+        }}
+      />
+      <TopTab.Screen
+        name="SavedDataScreen"
+        component={SavedDataScreen}
+        options={{
+          tabBarLabel: 'Saved Data',
         }}
       />
     </TopTab.Navigator>
