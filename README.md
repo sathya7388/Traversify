@@ -1,5 +1,6 @@
 # Traversify
-
+Mobile Application built using React-native in a way to show stacked navigation and tab navigation.
+Implemented Async storage that clears data every time the app is closed. Data fetched and shown in Data screen from API
 ## 1.Features:
 - Material Bottom Navigation
 - Stack Navigation - Depth 4
