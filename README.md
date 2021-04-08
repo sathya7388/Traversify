@@ -1,4 +1,37 @@
 # Traversify
+
+## 1.Features:
+- Material Bottom Navigation
+- Stack Navigation - Depth 4
+- Async Storage
+- Splash Screen
+- Rich UI
+## 2.Requirements:
+- NodeJS
+## 3.Target Environment:
+- Android
+## 4.Setup instructions :
+- Download Git Project
+- Run command
+- npm install or
+- yarn install
+## 5.Start Your App
+- react-native run-android
+
+## 6.Components
+- [react-native-material-textfield](https://www.npmjs.com/package/@softmedialab/react-native-material-textfield)
+- [react-native-responsive-screen](https://www.npmjs.com/package/react-native-responsive-screen)
+- [react-native-splash-screen](https://www.npmjs.com/package/react-native-splash-screen)
+- [react-native-unordered-list](https://www.npmjs.com/package/react-native-unordered-list)
+- [react-native-vector-icons](https://www.npmjs.com/package/react-native-vector-icons)
+- [@react-native-community/async-storage](https://github.com/react-native-async-storage/async-storage)
+- [@react-navigation/material-bottom-tabs](https://www.npmjs.com/package/@react-navigation/material-bottom-tabs)
+- [@react-navigation/material-top-tabs](https://www.npmjs.com/search?q=%40react-navigation%2Fmaterial-top-tabs)
+- [@react-navigation/stack](https://www.npmjs.com/package/@react-navigation/stack)
+
+
+
+
 <table>
    <tr>
       <td> Splash Screen</td>
