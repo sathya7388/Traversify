@@ -47,7 +47,7 @@ const RootNavigation = () => {
                 size={25}
               />
             ),
-            tabBarColor: COLORS.teal,
+            tabBarColor: COLORS.indigo,
           }}
         />
 

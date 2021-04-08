@@ -19,16 +19,11 @@ const DetailEndcard = ({data,saveData, onSelectData, selectedKeys}) => {
             style={cardStyle.checkbox}
             status={result ? 'checked' : 'unchecked'}
             onPress={sendData}
-            color={COLORS.teal}
+            color={COLORS.indigo}
           />
           <View style={[cardStyle.dataView]}>
             <Text>{data.name}</Text>
           </View>
-          {/* <View style={{overflow:'hidden'}}>
-            <Text>{saveData.nodeOne}</Text>
-            <Text>{saveData.nodeTwo}</Text>
-            <Text>{saveData.nodeThree}</Text>
-          </View> */}
         </View>
     </TouchableOpacity>
   );
@@ -49,7 +44,7 @@ const cardStyle = StyleSheet.create ({
   },
   container: {
     marginVertical: 10,
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.indigo,
     width: wp (90),
     height: hp (8),
     elevation: 5,

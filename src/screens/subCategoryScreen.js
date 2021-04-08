@@ -34,7 +34,7 @@ const SubCategoryScreen = props => {
   );
   return (
     <View>
-      <StatusBar backgroundColor={COLORS.teal} animated={true} />
+      <StatusBar backgroundColor={COLORS.indigo} animated={true} />
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.icon}
@@ -44,7 +44,7 @@ const SubCategoryScreen = props => {
             name="arrow-back-ios"
             color={COLORS.white}
             size={25}
-            backgroundColor={COLORS.teal}
+            backgroundColor={COLORS.indigo}
           />
         </TouchableOpacity>
         <View style={styles.headerView}>
@@ -67,7 +67,7 @@ const SubCategoryScreen = props => {
 const styles = StyleSheet.create ({
   header: {
     height: hp (7),
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.indigo,
     elevation: 5,
     alignItems: 'center',
     flexDirection: 'row',

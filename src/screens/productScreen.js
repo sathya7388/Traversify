@@ -75,7 +75,7 @@ const ProductScreen = props => {
             name="arrow-back-ios"
             color={COLORS.white}
             size={25}
-            backgroundColor={COLORS.teal}
+            backgroundColor={COLORS.indigo}
           />
         </TouchableOpacity>
         <View style={styles.headerView}>
@@ -108,7 +108,7 @@ export default ProductScreen;
 const styles = StyleSheet.create ({
   header: {
     height: hp (7),
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.indigo,
     elevation: 5,
     alignItems: 'center',
     flexDirection: 'row',

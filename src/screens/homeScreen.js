@@ -33,7 +33,7 @@ const HomeScreen = props => {
   );
   return (
     <View>
-      <FocusAwareStatusBar backgroundColor={COLORS.teal} animated={true} />
+      <FocusAwareStatusBar backgroundColor={COLORS.indigo} animated={true} />
       <View style={styles.header}>
         <Text style={styles.headerName}>Traversify</Text>
       </View>
@@ -49,7 +49,7 @@ const HomeScreen = props => {
 const styles = StyleSheet.create ({
   header: {
     height: hp (7),
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.indigo,
     elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
