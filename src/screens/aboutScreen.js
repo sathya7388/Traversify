@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StatusBar, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StatusBar,
+  StyleSheet,
+  ScrollView,
+  Linking,
+} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {useIsFocused} from '@react-navigation/native';
 import Unorderedlist from 'react-native-unordered-list';
@@ -23,8 +30,21 @@ const AboutScreen = () => {
           <Text style={styles.heading}>Traversify :</Text>
           <View style={styles.content}>
             <Text style={styles.text}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              Traversify is built using react-native to show stacked navigation, tab navigation and storage that is maintained only when the app is active.
             </Text>
+            <Text style={[styles.text, {fontWeight: 'bold'}]}>Features :</Text>
+            <Unorderedlist bulletUnicode={0x2022}>
+              <Text style={styles.text}>Material Bottom Navigation</Text>
+            </Unorderedlist>
+            <Unorderedlist bulletUnicode={0x2022}>
+              <Text style={styles.text}>Stack Navigation</Text>
+            </Unorderedlist>
+            <Unorderedlist bulletUnicode={0x2022}>
+              <Text style={styles.text}>Async Storage</Text>
+            </Unorderedlist>
+            <Unorderedlist bulletUnicode={0x2022}>
+              <Text style={styles.text}>Splash Screen</Text>
+            </Unorderedlist>
           </View>
           <Text style={styles.heading}>About Me :</Text>
           <View style={styles.content}>
@@ -34,43 +54,56 @@ const AboutScreen = () => {
                 rounded
                 source={require ('../assets/images/image.jpg')}
               />
-              <View style={{flexDirection: 'column'}}>
+              <View style={styles.profileContainer}>
                 <Text style={styles.profileText}>Sathya Narayanan</Text>
-                <Text style={styles.profileText}>Sathya Narayanan</Text>
-                <Text style={styles.profileText}>Sathya Narayanan</Text>
-                <Text style={styles.profileText}>Sathya Narayanan</Text>
-                <Text style={styles.profileText}>Sathya Narayanan</Text>
-                <Text style={styles.profileText}>Sathya Narayanan</Text>
+                <Text style={styles.profileText}>Experience : 3 years</Text>
+                <Text style={styles.profileText}>
+                  Role : Software Developer
+                </Text>
               </View>
             </View>
             <Unorderedlist bulletUnicode={0x2022}>
               <Text style={styles.text}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                Worked in ERP project devoping various modules. Like Business tax Calculation , Paid Leaves Calculation and Salary Calculation.
               </Text>
             </Unorderedlist>
             <Unorderedlist bulletUnicode={0x2022}>
               <Text style={styles.text}>
-                Standard dummy text ever since the 1500s, when an unknown printer took a galley
+                Web Application that monitor build and deployment jobs in jenkins and provides with failure reason, success and failure ratio.
               </Text>
             </Unorderedlist>
             <Unorderedlist bulletUnicode={0x2022}>
               <Text style={styles.text}>
-                Type and scrambled it to make a type specimen book.
+                Technologies : HTML5, CSS, JavaScript, jQuery, PostgreSQL, MySQL, java, ReactJS, Chart.js, Android, iOS Development
               </Text>
             </Unorderedlist>
             <Unorderedlist bulletUnicode={0x2022}>
-              <Text style={styles.text}>
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+              <Text
+                style={[styles.text, styles.textLink]}
+                onPress={() =>
+                  Linking.openURL (
+                    'https://www.linkedin.com/in/sathya-narayanan-6a5362b1'
+                  )}
+              >
+                LinkedIn Profile
               </Text>
             </Unorderedlist>
             <Unorderedlist bulletUnicode={0x2022}>
-              <Text style={styles.text}>
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+              <Text
+                style={[styles.text, styles.textLink]}
+                onPress={() =>
+                  Linking.openURL ('https://github.com/sathya7388/ShopAny')}
+              >
+                React-Native Project - ShopAny
               </Text>
             </Unorderedlist>
             <Unorderedlist bulletUnicode={0x2022}>
-              <Text style={styles.text}>
-                Publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              <Text
+                style={[styles.text, styles.textLink]}
+                onPress={() =>
+                  Linking.openURL ('https://github.com/sathya7388/Traversify')}
+              >
+                React-Native - Traversify
               </Text>
             </Unorderedlist>
           </View>
@@ -110,6 +143,7 @@ const styles = StyleSheet.create ({
   heading: {
     fontSize: hp (2.5),
     color: COLORS.lightBlack1,
+    fontWeight:'bold',
   },
   text: {
     color: COLORS.lightBlack2,
@@ -118,6 +152,15 @@ const styles = StyleSheet.create ({
   profileText: {
     color: COLORS.black,
     paddingLeft: 20,
+    paddingBottom: 15,
+  },
+  textLink: {
+    color: COLORS.indigo,
+    textDecorationLine: 'underline',
+  },
+  profileContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 });
 
