@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   ScrollView,
+  Text,
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {LogBox} from 'react-native';
@@ -16,6 +17,7 @@ import {
 } from 'react-native-responsive-screen';
 
 const ApiScreen = props => {
+  const [responseStatus, setStatus] = useState (true);
   const [apiResponse, setResponse] = useState ({
     ip: '',
     countryCode: '',
@@ -29,47 +31,46 @@ const ApiScreen = props => {
     metro_code: '',
   });
   const [isLoading, setLoading] = useState (false);
-  useEffect (
-    () => {
-      // const unsubscribe = props.navigation.addListener ('focus', () => {
-        LogBox.ignoreAllLogs ();
-        setLoading (true);
-        const requestOptions = {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        };
-        fetch ('https://freegeoip.app/json/', requestOptions)
-          .then (response => {
-            return response.json ();
-          })
-          .then (response => {
-            setResponse ({
-              ip: response.ip,
-              countryCode: response.country_code,
-              countryName: response.country_name,
-              regionName: response.region_code,
-              city: response.city,
-              zipCode: response.zip_code,
-              timeZone: response.time_zone,
-              latitude: response.latitude.toString (),
-              longitude: response.longitude.toString (),
-              metroCode: response.metro_code.toString (),
-            });
-          })
-          .catch (error => {
-            console.log (error);
-          })
-          .finally (() => {
-            setLoading (false);
+  useEffect (() => {
+    const unsubscribe = props.navigation.addListener ('focus', () => {
+      LogBox.ignoreAllLogs ();
+      setLoading (true);
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      };
+      fetch ('https://freegeoip.app/json/', requestOptions)
+        .then (response => {
+          return response.json ();
+        })
+        .then (response => {
+          setStatus (true);
+          setResponse ({
+            ip: response.ip,
+            countryCode: response.country_code,
+            countryName: response.country_name,
+            regionName: response.region_code,
+            city: response.city,
+            zipCode: response.zip_code,
+            timeZone: response.time_zone,
+            latitude: response.latitude.toString (),
+            longitude: response.longitude.toString (),
+            metroCode: response.metro_code.toString (),
           });
-      // });
-      // return unsubscribe;
-    },
-    []
-  );
+        })
+        .catch (error => {
+          setStatus (false);
+          console.log (error);
+        })
+        .finally (() => {
+          setLoading (false);
+        });
+    });
+    return unsubscribe;
+  }, []);
 
   const FocusAwareStatusBar = props => {
     const isFocused = useIsFocused ();
@@ -84,60 +85,64 @@ const ApiScreen = props => {
             <ActivityIndicator size="large" color={COLORS.lightblue} />
           </View>
         : <View style={styles.content}>
-            <ScrollView>
+            {responseStatus
+              ? <ScrollView>
 
-              <OutlinedTextField
-                label="Ip Address"
-                value={apiResponse.ip}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="Country code"
-                value={apiResponse.countryCode}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="Country name"
-                value={apiResponse.countryName}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="Region name"
-                value={apiResponse.regionName}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="City"
-                value={apiResponse.city}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="zipcode"
-                value={apiResponse.zipCode}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="Time zone"
-                value={apiResponse.timeZone}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="Latitude"
-                value={apiResponse.latitude}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="Longitude"
-                value={apiResponse.longitude}
-                disabled={true}
-              />
-              <OutlinedTextField
-                label="Metro code"
-                value={apiResponse.metroCode}
-                disabled={true}
-                labelTextStyle={styles.textTitle}
-              />
-            </ScrollView>
+                  <OutlinedTextField
+                    label="Ip Address"
+                    value={apiResponse.ip}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="Country code"
+                    value={apiResponse.countryCode}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="Country name"
+                    value={apiResponse.countryName}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="Region name"
+                    value={apiResponse.regionName}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="City"
+                    value={apiResponse.city}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="zipcode"
+                    value={apiResponse.zipCode}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="Time zone"
+                    value={apiResponse.timeZone}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="Latitude"
+                    value={apiResponse.latitude}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="Longitude"
+                    value={apiResponse.longitude}
+                    disabled={true}
+                  />
+                  <OutlinedTextField
+                    label="Metro code"
+                    value={apiResponse.metroCode}
+                    disabled={true}
+                    labelTextStyle={styles.textTitle}
+                  />
+                </ScrollView>
+              : <View style={styles.responseContainer}>
+                  <Text  style={styles.heading}>API Response Failed :(</Text>
+                </View>}
           </View>}
     </View>
   );
@@ -148,7 +153,17 @@ const styles = StyleSheet.create ({
     justifyContent: 'center',
     alignItems: 'center',
     width: wp (100),
-    backgroundColor:COLORS.white,
+    backgroundColor: COLORS.white,
+  },
+  responseContainer:{
+    alignItems: 'center',
+    height: hp (100),
+    marginTop:100,
+  },
+  heading: {
+    fontSize: hp (2.5),
+    color: COLORS.textBlue,
+    fontWeight:'bold',
   },
   activity: {
     height: hp (100),
